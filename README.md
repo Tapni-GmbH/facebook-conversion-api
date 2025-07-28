@@ -1,8 +1,8 @@
 Facebook Conversion API
 
-> Node.js wrapper for [Facebook's Conversion API](https://developers.facebook.com/docs/marketing-api/conversions-api/)
+> Node.js wrapper for [Facebook's Conversion API](https://developers.facebook.com/docs/marketing-api/conversions-api/) built with the Facebook Business SDK v23
 
-## Install
+## Install (requires Node.js 20+)
 
 ```bash
 npm install @tapstack/facebook-conversion-api
