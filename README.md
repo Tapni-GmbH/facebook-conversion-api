@@ -23,12 +23,12 @@ const FBConversionAPI = new FacebookConversionAPI(
   'clientIpAddress',
   'clientUserAgent',
   'fbp', // or null
-  'fpc', // or null
+  'fbc', // or null
   'debug', // default to false
 );
 ```
 
-Read more here on how you can get your [access token](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/#access-token) and [fbp/fpc identifiers](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/fbp-and-fbc/).
+Read more here on how you can get your [access token](https://developers.facebook.com/docs/marketing-api/conversions-api/get-started/#access-token) and [fbp/fbc identifiers](https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/fbp-and-fbc/).
 
 ### ViewContent Event
 ```node
