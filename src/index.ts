@@ -1,20 +1,25 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-const bizSdk = require('facebook-nodejs-business-sdk');
+import {
+  EventRequest,
+  CustomData,
+  UserData,
+  Content,
+  ServerEvent,
+} from 'facebook-nodejs-business-sdk';
 
 class FacebookConversionAPI {
-  accessToken: string;
+  private accessToken: string;
 
-  pixelId: string;
+  private pixelId: string;
 
-  fbp: string | null;
+  private fbp: string | null;
 
-  fbc: string | null;
+  private fbc: string | null;
 
-  userData: any;
+  private userData: UserData;
 
-  contents: any;
+  private contents: Content[];
 
-  debug: boolean;
+  private debug: boolean;
 
   /**
    * Constructor.
@@ -39,7 +44,7 @@ class FacebookConversionAPI {
     this.fbp = fbp;
     this.fbc = fbc;
     this.debug = debug;
-    this.userData = (new bizSdk.UserData())
+    this.userData = (new UserData())
       .setEmails(emails)
       .setPhones(phones)
       .setClientIpAddress(clientIpAddress)
@@ -60,7 +65,7 @@ class FacebookConversionAPI {
    * @param quantity
    */
   addProduct(sku: string, quantity: number): void {
-    this.contents.push((new bizSdk.Content()).setId(sku).setQuantity(quantity));
+    this.contents.push(new Content().setId(sku).setQuantity(quantity));
 
     if (this.debug) {
       console.log(`Add To Cart: ${JSON.stringify(this.contents)}\n`);
@@ -75,23 +80,22 @@ class FacebookConversionAPI {
    * @param purchaseData
    * @param eventData
    */
-  sendEvent(
-    eventName: string, sourceUrl: string,
-    purchaseData?: { value?: number, currency?: string }, eventData?: { eventId?: string },
-  ): void {
-    const eventRequest = (new bizSdk.EventRequest(this.accessToken, this.pixelId))
+  async sendEvent(
+    eventName: string,
+    sourceUrl: string,
+    purchaseData?: { value?: number; currency?: string },
+    eventData?: { eventId?: string },
+  ): Promise<unknown> {
+    const eventRequest = new EventRequest(this.accessToken, this.pixelId)
       .setEvents([this.#getEventData(eventName, sourceUrl, purchaseData, eventData)]);
 
     this.contents = [];
 
-    eventRequest.execute().then(
-      (response: any) => response,
-      (error: any) => error,
-    );
-
     if (this.debug) {
       console.log(`Event Request: ${JSON.stringify(eventRequest)}\n`);
     }
+
+    return eventRequest.execute();
   }
 
   /**
@@ -105,17 +109,17 @@ class FacebookConversionAPI {
   #getEventData(
     eventName: string,
     sourceUrl: string,
-    purchaseData?: { value?: number, currency?: string },
+    purchaseData?: { value?: number; currency?: string },
     eventData?: { eventId?: string },
-  ): any {
-    const currentTimestamp = Math.floor(new Date() as any / 1000);
+  ): ServerEvent {
+    const currentTimestamp = Math.floor(Date.now() / 1000);
 
-    return (new bizSdk.ServerEvent())
+    return new ServerEvent()
       .setEventName(eventName)
       .setEventTime(currentTimestamp)
       .setEventId(eventData?.eventId)
       .setUserData(this.userData)
-      .setCustomData((new bizSdk.CustomData())
+      .setCustomData(new CustomData()
         .setContents(this.contents)
         .setCurrency(purchaseData?.currency)
         .setValue(purchaseData?.value))

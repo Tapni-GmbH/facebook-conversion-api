@@ -1,6 +1,6 @@
 {
-  "name": "@rivercode/facebook-conversion-api",
-  "version": "1.1.8",
+  "name": "@tapstack/facebook-conversion-api",
+  "version": "1.1.10",
   "description": "Facebook Conversion API Wrapper for Node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RivercodeAB/facebook-conversion-api.git"
+    "url": "git+https://github.com/tapni-gmbh/facebook-conversion-api.git"
   },
   "author": "Rivercode",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RivercodeAB/facebook-conversion-api/issues"
+    "url": "https://github.com/tapni-gmbh/facebook-conversion-api/issues"
   },
-  "homepage": "https://github.com/RivercodeAB/facebook-conversion-api#readme",
+  "homepage": "https://github.com/tapni-gmbh/facebook-conversion-api#readme",
   "dependencies": {
-    "facebook-nodejs-business-sdk": "^13.0.0"
+    "facebook-nodejs-business-sdk": "^23.0.1"
   },
   "devDependencies": {
     "@types/node": "^16.7.1",
