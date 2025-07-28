@@ -1,4 +1,4 @@
-Facebook Conversion API
+Facebook Conversion API (CAPI)
 
 > Node.js wrapper for [Facebook's Conversion API](https://developers.facebook.com/docs/marketing-api/conversions-api/) built with the Facebook Business SDK v23
 
