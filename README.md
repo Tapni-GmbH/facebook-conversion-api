@@ -5,15 +5,15 @@ Facebook Conversion API
 ## Install
 
 ```bash
-npm install @rivercode/facebook-conversion-api
+npm install @tapstack/facebook-conversion-api
 ```
 
 ## Initiate Facebook Conversion API
 ```node
 // ES6 import or TypeScript
-import FacebookConversionAPI from '@rivercode/facebook-conversion-api';
+import FacebookConversionAPI from '@tapstack/facebook-conversion-api';
 // CommonJS
-const FacebookConversionAPI = require('@rivercode/facebook-conversion-api').default;
+const FacebookConversionAPI = require('@tapstack/facebook-conversion-api').default;
 
 const FBConversionAPI = new FacebookConversionAPI(
   'accessToken',
@@ -33,23 +33,23 @@ Read more here on how you can get your [access token](https://developers.faceboo
 ### ViewContent Event
 ```node
 FBConversionAPI.addProduct('productSku', quantity);
-FBConversionAPI.sendEvent('ViewContent', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
+await FBConversionAPI.sendEvent('ViewContent', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
 ```
 
 ### Add To Cart Event
 ```node
 FBConversionAPI.addProduct('productSku', quantity);
-FBConversionAPI.sendEvent('AddToCart', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
+await FBConversionAPI.sendEvent('AddToCart', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
 ```
 
 ### Initiate Checkout Event
 ```node
 FBConversionAPI.addProduct('productSku', quantity);
-FBConversionAPI.sendEvent('InitiateCheckout', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
+await FBConversionAPI.sendEvent('InitiateCheckout', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
 ```
 
 ### Purchase Event
 ```node
 FBConversionAPI.addProduct('productSku', quantity);
-FBConversionAPI.sendEvent('Purchase', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
+await FBConversionAPI.sendEvent('Purchase', sourceUrl, { value: 1000, currency: 'USD' }, { eventId: 'eventId' });
 ```
